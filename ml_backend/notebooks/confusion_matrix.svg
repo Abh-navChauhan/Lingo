@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="440" style="background:#0f172a; font-family:sans-serif;">
+<text x="220.0" y="40" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="bold">Confusion Matrix: Logistic Regression (Test Set)</text>
+<text x="220.0" y="65" text-anchor="middle" fill="#94a3b8" font-size="12">Predicted Class &rarr;</text>
+<text x="85" y="145.0" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="600">Beginner</text>
+<text x="140.0" y="90" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="600">Beginner</text>
+<rect x="100" y="100" width="80" height="80" fill="rgba(59, 130, 246, 0.638)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="140.0" y="146.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">90</text>
+<rect x="180" y="100" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="220.0" y="146.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">9</text>
+<rect x="260" y="100" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="300.0" y="146.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">2</text>
+<text x="85" y="225.0" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="600">Intermediate</text>
+<text x="220.0" y="90" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="600">Intermediate</text>
+<rect x="100" y="180" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="140.0" y="226.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">5</text>
+<rect x="180" y="180" width="80" height="80" fill="rgba(59, 130, 246, 1.000)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="220.0" y="226.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">141</text>
+<rect x="260" y="180" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="300.0" y="226.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">7</text>
+<text x="85" y="305.0" text-anchor="end" fill="#cbd5e1" font-size="13" font-weight="600">Advanced</text>
+<text x="300.0" y="90" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="600">Advanced</text>
+<rect x="100" y="260" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="140.0" y="306.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">2</text>
+<rect x="180" y="260" width="80" height="80" fill="rgba(239, 68, 68, 0.096)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="220.0" y="306.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">4</text>
+<rect x="260" y="260" width="80" height="80" fill="rgba(59, 130, 246, 0.709)" stroke="#334155" stroke-width="1.5" rx="4"/>
+<text x="300.0" y="306.0" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">100</text>
+<text x="25" y="220.0" transform="rotate(-90 25 220.0)" text-anchor="middle" fill="#94a3b8" font-size="12">True Class</text>
+</svg>

@@ -1,58 +1,40 @@
 "use server";
 
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { eq } from "drizzle-orm";
 
-import { stripe } from "@/lib/stripe";
-import { absoluteUrl } from "@/lib/utils";
-import { getUserSubscription } from "@/db/queries";
+import db from "@/db/drizzle";
+import { userEarnedPremium } from "@/db/schema";
+import { getUserEarnedPremium } from "@/db/queries";
 
-const returnUrl = absoluteUrl("/shop");
-
-export const createStripeUrl = async () => {
+export const claimEarnedPremium = async () => {
   const { userId } = await auth();
-  const user = await currentUser();
 
-  if (!userId || !user) {
+  if (!userId) {
     throw new Error("Unauthorized");
   }
 
-  const userSubscription = await getUserSubscription();
+  const current = await getUserEarnedPremium();
 
-  if (userSubscription && userSubscription.stripeCustomerId) {
-    const stripeSession = await stripe.billingPortal.sessions.create({
-      customer: userSubscription.stripeCustomerId,
-      return_url: returnUrl,
-    });
-
-    return { data: stripeSession.url };
+  if (!current || !current.isEligible) {
+    return { error: "not_eligible" };
   }
 
-  const stripeSession = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    payment_method_types: ["card"],
-    customer_email: user.emailAddresses[0].emailAddress,
-    line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "USD",
-          product_data: {
-            name: "Lingo Pro",
-            description: "Unlimited Hearts",
-          },
-          unit_amount: 2000, // $20.00 USD
-          recurring: {
-            interval: "month",
-          },
-        },
-      },
-    ],
-    metadata: {
-      userId,
-    },
-    success_url: returnUrl,
-    cancel_url: returnUrl,
-  });
+  const durationDays = current.tier === "7_DAY_LEGENDARY_PASS" ? 7 : 3;
+  const now = new Date();
+  const expiresAt = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
 
-  return { data: stripeSession.url };
+  await db.update(userEarnedPremium).set({
+    unlockedAt: now,
+    expiresAt: expiresAt,
+  }).where(eq(userEarnedPremium.userId, userId));
+
+  revalidatePath("/shop");
+  revalidatePath("/learn");
+  revalidatePath("/quests");
+  revalidatePath("/leaderboard");
+  revalidatePath("/intelligence");
+
+  return { success: true, expiresAt };
 };

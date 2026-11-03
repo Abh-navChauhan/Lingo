@@ -116,3 +116,35 @@ export const userSubscription = pgTable("user_subscription", {
   stripePriceId: text("stripe_price_id").notNull(),
   stripeCurrentPeriodEnd: timestamp("stripe_current_period_end").notNull(),
 });
+
+// ML-Powered Learning Intelligence Session Telemetry
+export const userLearningSessions = pgTable("user_learning_sessions", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  lessonId: integer("lesson_id").references(() => lessons.id, { onDelete: "cascade" }),
+  topic: text("topic").notNull().default("Spanish Basics"),
+  accuracy: integer("accuracy").notNull(), // percentage 0-100
+  totalChallenges: integer("total_challenges").notNull().default(0),
+  correctChallenges: integer("correct_challenges").notNull().default(0),
+  attempts: integer("attempts").notNull().default(1),
+  avgResponseTime: integer("avg_response_time").notNull().default(15), // in seconds
+  predictedMastery: text("predicted_mastery"), // "Beginner" | "Intermediate" | "Advanced"
+  confidence: integer("confidence"), // percentage 0-100
+  clusterLabel: text("cluster_label"),
+  completedAt: timestamp("completed_at").notNull().defaultNow(),
+});
+
+// Merit-Based 'Earn Your Premium' Status
+export const userEarnedPremium = pgTable("user_earned_premium", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().unique(),
+  isEligible: boolean("is_eligible").notNull().default(false),
+  tier: text("tier").notNull().default("FOUNDATION_FREE"),
+  predictedMastery: text("predicted_mastery").notNull().default("Beginner"),
+  masteryConfidence: integer("mastery_confidence").notNull().default(0),
+  clusterLabel: text("cluster_label").notNull().default("Consistent Learner"),
+  unlockedAt: timestamp("unlocked_at"),
+  expiresAt: timestamp("expires_at"),
+  unlockedReason: text("unlocked_reason"),
+  progressPercentage: integer("progress_percentage").notNull().default(0),
+});

@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { Promo } from "@/components/promo";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
-import { getUserProgress, getUserSubscription } from "@/db/queries";
+import { getUserProgress, getUserSubscription, getUserEarnedPremium } from "@/db/queries";
 
 import { Items } from "./items";
 import { Quests } from "@/components/quests";
@@ -13,13 +12,16 @@ import { Quests } from "@/components/quests";
 const ShopPage = async () => {
   const userProgressData = getUserProgress();
   const userSubscriptionData = getUserSubscription();
+  const userEarnedPremiumData = getUserEarnedPremium();
 
   const [
     userProgress,
     userSubscription,
+    earnedPremium,
   ] = await Promise.all([
     userProgressData,
-    userSubscriptionData
+    userSubscriptionData,
+    userEarnedPremiumData,
   ]);
 
   if (!userProgress || !userProgress.activeCourse) {
@@ -37,29 +39,27 @@ const ShopPage = async () => {
           points={userProgress.points}
           hasActiveSubscription={isPro}
         />
-        {!isPro && (
-          <Promo />
-        )}
         <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
           <Image
             src="/shop.svg"
-            alt="Shop"
+            alt="Earn Premium"
             height={90}
             width={90}
           />
-          <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
-            Shop
+          <h1 className="text-center font-bold text-neutral-800 text-2xl my-4">
+            Earn Your Premium
           </h1>
-          <p className="text-muted-foreground text-center text-lg mb-6">
-            Spend your points on cool stuff.
+          <p className="text-muted-foreground text-center text-base lg:text-lg mb-6 max-w-md">
+            No credit card or payments required. Unlock unlimited hearts and AI learning features through demonstrated mastery and learning consistency.
           </p>
           <Items
             hearts={userProgress.hearts}
             points={userProgress.points}
             hasActiveSubscription={isPro}
+            earnedPremium={earnedPremium}
           />
         </div>
       </FeedWrapper>

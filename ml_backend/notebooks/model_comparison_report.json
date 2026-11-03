@@ -1,0 +1,196 @@
+{
+  "metadata": {
+    "total_samples": 1800,
+    "train_samples": 1440,
+    "test_samples": 360,
+    "best_algorithm": "Logistic Regression",
+    "classes": [
+      "Beginner",
+      "Intermediate",
+      "Advanced"
+    ]
+  },
+  "supervised_comparison": {
+    "Logistic Regression": {
+      "accuracy": 0.9194,
+      "macro_f1": 0.9193,
+      "weighted_f1": 0.9193,
+      "macro_precision": 0.9203,
+      "macro_recall": 0.9187,
+      "confusion_matrix": [
+        [
+          90,
+          9,
+          2
+        ],
+        [
+          5,
+          141,
+          7
+        ],
+        [
+          2,
+          4,
+          100
+        ]
+      ],
+      "classification_report": {
+        "Beginner": {
+          "precision": 0.9278,
+          "recall": 0.8911,
+          "f1-score": 0.9091,
+          "support": 101
+        },
+        "Intermediate": {
+          "precision": 0.9156,
+          "recall": 0.9216,
+          "f1-score": 0.9186,
+          "support": 153
+        },
+        "Advanced": {
+          "precision": 0.9174,
+          "recall": 0.9434,
+          "f1-score": 0.9302,
+          "support": 106
+        },
+        "accuracy": 0.9194,
+        "macro avg": {
+          "precision": 0.9203,
+          "recall": 0.9187,
+          "f1-score": 0.9193,
+          "support": 360
+        },
+        "weighted avg": {
+          "precision": 0.9196,
+          "recall": 0.9194,
+          "f1-score": 0.9193,
+          "support": 360
+        }
+      }
+    },
+    "Decision Tree": {
+      "accuracy": 0.8722,
+      "macro_f1": 0.8705,
+      "weighted_f1": 0.8714,
+      "macro_precision": 0.8953,
+      "macro_recall": 0.8582,
+      "confusion_matrix": [
+        [
+          76,
+          23,
+          2
+        ],
+        [
+          2,
+          146,
+          5
+        ],
+        [
+          2,
+          12,
+          92
+        ]
+      ],
+      "classification_report": {
+        "Beginner": {
+          "precision": 0.95,
+          "recall": 0.7525,
+          "f1-score": 0.8398,
+          "support": 101
+        },
+        "Intermediate": {
+          "precision": 0.8066,
+          "recall": 0.9542,
+          "f1-score": 0.8743,
+          "support": 153
+        },
+        "Advanced": {
+          "precision": 0.9293,
+          "recall": 0.8679,
+          "f1-score": 0.8976,
+          "support": 106
+        },
+        "accuracy": 0.8722,
+        "macro avg": {
+          "precision": 0.8953,
+          "recall": 0.8582,
+          "f1-score": 0.8705,
+          "support": 360
+        },
+        "weighted avg": {
+          "precision": 0.883,
+          "recall": 0.8722,
+          "f1-score": 0.8714,
+          "support": 360
+        }
+      }
+    },
+    "Random Forest": {
+      "accuracy": 0.8722,
+      "macro_f1": 0.8724,
+      "weighted_f1": 0.8723,
+      "macro_precision": 0.8867,
+      "macro_recall": 0.8633,
+      "confusion_matrix": [
+        [
+          84,
+          15,
+          2
+        ],
+        [
+          7,
+          142,
+          4
+        ],
+        [
+          2,
+          16,
+          88
+        ]
+      ],
+      "classification_report": {
+        "Beginner": {
+          "precision": 0.9032,
+          "recall": 0.8317,
+          "f1-score": 0.866,
+          "support": 101
+        },
+        "Intermediate": {
+          "precision": 0.8208,
+          "recall": 0.9281,
+          "f1-score": 0.8712,
+          "support": 153
+        },
+        "Advanced": {
+          "precision": 0.9362,
+          "recall": 0.8302,
+          "f1-score": 0.88,
+          "support": 106
+        },
+        "accuracy": 0.8722,
+        "macro avg": {
+          "precision": 0.8867,
+          "recall": 0.8633,
+          "f1-score": 0.8724,
+          "support": 360
+        },
+        "weighted avg": {
+          "precision": 0.8779,
+          "recall": 0.8722,
+          "f1-score": 0.8723,
+          "support": 360
+        }
+      }
+    }
+  },
+  "kmeans_clustering": {
+    "k": 3,
+    "inertia": 5438.45,
+    "silhouette_score": 0.2179,
+    "clusters": {
+      "0": "Rapid Fluent Achievers",
+      "1": "Steady Methodical Learners",
+      "2": "Struggling Foundation Needers"
+    }
+  }
+}

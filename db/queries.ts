@@ -1,6 +1,6 @@
 import { cache } from "react";
-import { eq } from "drizzle-orm";
-import { auth } from "@clerk/nextjs";
+import { eq, desc } from "drizzle-orm";
+import { auth } from "@clerk/nextjs/server";
 
 import db from "@/db/drizzle";
 import { 
@@ -9,7 +9,9 @@ import {
   lessons, 
   units, 
   userProgress,
-  userSubscription
+  userSubscription,
+  userLearningSessions,
+  userEarnedPremium
 } from "@/db/schema";
 
 export const getUserProgress = cache(async () => {
@@ -218,26 +220,59 @@ export const getLessonPercentage = cache(async () => {
   return percentage;
 });
 
-const DAY_IN_MS = 86_400_000;
+// Merit-based 'Earn Your Premium' check (No Stripe dependency)
 export const getUserSubscription = cache(async () => {
   const { userId } = await auth();
 
   if (!userId) return null;
 
-  const data = await db.query.userSubscription.findFirst({
-    where: eq(userSubscription.userId, userId),
+  const earned = await db.query.userEarnedPremium.findFirst({
+    where: eq(userEarnedPremium.userId, userId),
   });
 
-  if (!data) return null;
-
-  const isActive = 
-    data.stripePriceId &&
-    data.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now();
+  if (earned && earned.expiresAt && earned.expiresAt.getTime() > Date.now()) {
+    return {
+      isActive: true,
+      tier: earned.tier,
+      expiresAt: earned.expiresAt,
+      predictedMastery: earned.predictedMastery,
+      unlockedReason: earned.unlockedReason,
+      progressPercentage: earned.progressPercentage,
+    };
+  }
 
   return {
-    ...data,
-    isActive: !!isActive,
+    isActive: false,
+    tier: earned?.tier || "FOUNDATION_FREE",
+    expiresAt: earned?.expiresAt || null,
+    predictedMastery: earned?.predictedMastery || "Beginner",
+    unlockedReason: earned?.unlockedReason || null,
+    progressPercentage: earned?.progressPercentage || 0,
   };
+});
+
+export const getUserEarnedPremium = cache(async () => {
+  const { userId } = await auth();
+  if (!userId) return null;
+
+  const earned = await db.query.userEarnedPremium.findFirst({
+    where: eq(userEarnedPremium.userId, userId),
+  });
+
+  return earned || null;
+});
+
+export const getUserLearningSessions = cache(async () => {
+  const { userId } = await auth();
+  if (!userId) return [];
+
+  const sessions = await db.query.userLearningSessions.findMany({
+    where: eq(userLearningSessions.userId, userId),
+    orderBy: [desc(userLearningSessions.completedAt)],
+    limit: 25,
+  });
+
+  return sessions;
 });
 
 export const getTopTenUsers = cache(async () => {

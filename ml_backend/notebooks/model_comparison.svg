@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="400" style="background:#0f172a; font-family:sans-serif;">
+<text x="375.0" y="35" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="bold">Supervised Algorithm Performance Comparison</text>
+<text x="375.0" y="60" text-anchor="middle" fill="#94a3b8" font-size="12">Test Set Accuracy, Macro-F1 &amp; Weighted-F1 Metrics</text>
+<line x1="140" y1="272.0" x2="700" y2="272.0" stroke="#334155" stroke-dasharray="3,3" />
+<text x="130" y="276.0" text-anchor="end" fill="#64748b" font-size="11">20%</text>
+<line x1="140" y1="224.0" x2="700" y2="224.0" stroke="#334155" stroke-dasharray="3,3" />
+<text x="130" y="228.0" text-anchor="end" fill="#64748b" font-size="11">40%</text>
+<line x1="140" y1="176.0" x2="700" y2="176.0" stroke="#334155" stroke-dasharray="3,3" />
+<text x="130" y="180.0" text-anchor="end" fill="#64748b" font-size="11">60%</text>
+<line x1="140" y1="128.0" x2="700" y2="128.0" stroke="#334155" stroke-dasharray="3,3" />
+<text x="130" y="132.0" text-anchor="end" fill="#64748b" font-size="11">80%</text>
+<line x1="140" y1="80.0" x2="700" y2="80.0" stroke="#334155" stroke-dasharray="3,3" />
+<text x="130" y="84.0" text-anchor="end" fill="#64748b" font-size="11">100%</text>
+<rect x="170.0" y="99.344" width="26" height="220.656" fill="#3b82f6" rx="4" />
+<text x="183.0" y="93.344" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">91.9%</text>
+<rect x="200.0" y="99.368" width="26" height="220.632" fill="#10b981" rx="4" />
+<text x="213.0" y="93.368" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">91.9%</text>
+<rect x="230.0" y="99.368" width="26" height="220.632" fill="#8b5cf6" rx="4" />
+<text x="243.0" y="93.368" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">91.9%</text>
+<text x="209.0" y="345" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="600">Logistic Regression</text>
+<rect x="356.66666666666663" y="110.672" width="26" height="209.328" fill="#3b82f6" rx="4" />
+<text x="369.66666666666663" y="104.672" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.2%</text>
+<rect x="386.66666666666663" y="111.07999999999998" width="26" height="208.92000000000002" fill="#10b981" rx="4" />
+<text x="399.66666666666663" y="105.07999999999998" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.1%</text>
+<rect x="416.66666666666663" y="110.864" width="26" height="209.136" fill="#8b5cf6" rx="4" />
+<text x="429.66666666666663" y="104.864" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.1%</text>
+<text x="395.66666666666663" y="345" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="600">Decision Tree</text>
+<rect x="543.3333333333333" y="110.672" width="26" height="209.328" fill="#3b82f6" rx="4" />
+<text x="556.3333333333333" y="104.672" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.2%</text>
+<rect x="573.3333333333333" y="110.62400000000002" width="26" height="209.37599999999998" fill="#10b981" rx="4" />
+<text x="586.3333333333333" y="104.62400000000002" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.2%</text>
+<rect x="603.3333333333333" y="110.648" width="26" height="209.352" fill="#8b5cf6" rx="4" />
+<text x="616.3333333333333" y="104.648" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="bold">87.2%</text>
+<text x="582.3333333333333" y="345" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="600">Random Forest</text>
+<rect x="200" y="370" width="14" height="14" fill="#3b82f6" rx="3"/>
+<text x="220" y="382" fill="#cbd5e1" font-size="12">Accuracy</text>
+<rect x="350" y="370" width="14" height="14" fill="#10b981" rx="3"/>
+<text x="370" y="382" fill="#cbd5e1" font-size="12">Macro F1</text>
+<rect x="500" y="370" width="14" height="14" fill="#8b5cf6" rx="3"/>
+<text x="520" y="382" fill="#cbd5e1" font-size="12">Weighted F1</text>
+</svg>
